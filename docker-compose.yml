@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  nginx:
+    container_name: jingu-front-nginx
+    build: ./nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./volumes/html/dist:/var/www/html
+  vue:
+    container_name: jingu-front-vue
+    build: ./vue
+    volumes:
+      - ./volumes/html:/app/jingu
+    tty: true
