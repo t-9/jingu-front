@@ -86,6 +86,12 @@
     "not ie <= 8"
   ],
   "resolutions": {
-    "https-proxy-agent": "^2.2.3"
+    "growl": "^1.10.0",
+    "http-proxy-agent": "^2.1.0",
+    "https-proxy-agent": "^2.2.3",
+    "js-yaml": "^3.13.1",
+    "lodash.defaultsdeep": "^4.6.1",
+    "minimist": "^0.2.1",
+    "serialize-javascript": "^2.1.1"
   }
 }
