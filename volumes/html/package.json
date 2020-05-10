@@ -91,6 +91,7 @@
     "https-proxy-agent": "^2.2.3",
     "js-yaml": "^3.13.1",
     "lodash.defaultsdeep": "^4.6.1",
+    "mem": "^4.0.0",
     "minimist": "^0.2.1",
     "serialize-javascript": "^2.1.1"
   }
