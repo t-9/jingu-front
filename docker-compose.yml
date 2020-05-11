@@ -7,6 +7,7 @@ services:
       - 80:80
     volumes:
       - ./volumes/html/dist:/var/www/html
+    restart: always
   vue:
     container_name: jingu-front-vue
     build: ./vue
