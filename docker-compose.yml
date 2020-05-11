@@ -3,13 +3,24 @@ services:
   nginx:
     container_name: jingu-front-nginx
     build: ./nginx
-    ports:
-      - 80:80
     volumes:
       - ./volumes/html/dist:/var/www/html
+    restart: always
   vue:
     container_name: jingu-front-vue
     build: ./vue
     volumes:
       - ./volumes/html:/app/jingu
     tty: true
+  https-portal:
+    image: steveltn/https-portal:1
+    ports:
+      - '80:80'
+      - '443:443'
+    links:
+      - nginx
+    restart: always
+    environment:
+      DOMAINS: '${HTTPS_PORTAL_DOMAIN:-chikage.jp} -> http://nginx'
+      STAGE: ${HTTPS_PORTAL_STAGE:-production}
+    restart: always
