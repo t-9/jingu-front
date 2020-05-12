@@ -23,4 +23,6 @@ services:
     environment:
       DOMAINS: '${HTTPS_PORTAL_DOMAIN:-chikage.jp} -> http://nginx'
       STAGE: ${HTTPS_PORTAL_STAGE:-production}
+    volumes:
+      - ./volumes/https-portal:/var/lib/https-portal
     restart: always
