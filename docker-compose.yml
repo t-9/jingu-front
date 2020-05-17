@@ -1,10 +1,19 @@
 version: '3.7'
 services:
   nginx:
+    ports:
+      - '80:80'
+      - '443:443'
+      - '443:443/udp'
     container_name: jingu-front-nginx
     build: ./nginx
     volumes:
       - ./volumes/html/dist:/var/www/html
+      - ./volumes/logs:/var/log/nginx
+      - ./volumes/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ${NGINX_DEFAULT_CONF_HOST_PATH:-./volumes/nginx/chikage.jp.conf}:/etc/nginx/conf.d/default.conf
+      - ${NGINX_DEFAULT_SSL_CONF_HOST_PATH:-./volumes/nginx/chikage.jp.ssl.conf}:/etc/nginx/conf.d/default.ssl.conf
+      - ./volumes/https-portal:/var/lib/https-portal
     restart: always
   vue:
     container_name: jingu-front-vue
@@ -14,9 +23,6 @@ services:
     tty: true
   https-portal:
     image: steveltn/https-portal:1
-    ports:
-      - '80:80'
-      - '443:443'
     links:
       - nginx
     restart: always
